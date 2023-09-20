@@ -20,9 +20,8 @@
     <Button class="ivu-mt" type="primary" @click="login">登录</Button>
   </div>
 
-  <div v-if="currentPage === 'list'">列表页</div>
   <div v-if="currentPage === 'detail'">详情页</div>
-  <ins-list></ins-list>
+  <ins-list v-if="currentPage === 'list'"></ins-list>
 </template>
 
 <script setup>
