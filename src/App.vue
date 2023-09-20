@@ -2,17 +2,16 @@
 
 <template>
   <div>
-    <i-login v-if="!isLogin" name="inscodeName" icon="https://a.png" @loginSuccess="handleLoginSuccess" />
-    <div v-if="isLogin" >登陆成功</div>
+    <iItem />
   </div>
 </template>
 
 <script>
-import iLogin from 'view-ui-plus'
+import iItem from './components/item.vue'
 
 export default {
   components: {
-    iLogin
+    iItem
   },
   data() {
     return {
