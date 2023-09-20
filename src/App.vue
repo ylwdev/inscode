@@ -4,7 +4,12 @@
       当前 Vue 版本为 {{ vueVersion }}，View UI Plus 版本为 {{ version }}
     </Alert>
   </div>
-  <div>公共 toolbar</div>
+  <div>
+    <toolbar
+        logoHeight="35px"
+        userName="李四"
+    />
+  </div>
 
   <div v-if="currentPage === 'register'">
     用户注册
@@ -28,6 +33,7 @@
 import { ref, computed, version as vueVersion } from 'vue'
 import { version, Message } from 'view-ui-plus'
 import insList from './components/list.vue'
+import toolbar from './components/toolbar.vue'
 
 let currentPage = ref(localStorage.getItem('currentUser') ? 'list' : 'register');
 let userName = ref('');
