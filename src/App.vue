@@ -22,10 +22,13 @@
 
   <div v-if="currentPage === 'list'">列表页</div>
   <div v-if="currentPage === 'detail'">详情页</div>
+  <ins-list></ins-list>
 </template>
 <script setup>
 import { ref, version as vueVersion } from 'vue' // 从 Vue 中导入 ref 和 vueVersion
 import { version, Message } from 'view-ui-plus' // 从 view-ui-plus 中导入 version 和 Message
+
+import insList from './components/list.vue'
 
 
 let currentPage = "register";
