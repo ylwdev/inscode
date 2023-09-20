@@ -47,4 +47,4 @@ icon 登录框图标
 使用方式： import userDetail from 'inscode'
 
 使用以上组件实现下述需求，要求返回完整代码，不需要解释直接返回完整代码，Markdown格式，需求是：
-实现一个登录功能，登录框名称是inscodeName,icon使用https://a.png，登陆成功跳转到详情页
+实现一个登录功能，登录框名称是inscodeName,icon使用https://a.png，登陆成功跳转到列表页
