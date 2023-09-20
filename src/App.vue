@@ -1,41 +1,72 @@
 <template>
-  <div class="ivu-p">
-    <Alert>
-      当前 Vue 版本为 {{ vueVersion }}，View UI Plus 版本为 {{ version }}
-    </Alert>
-  </div>
   <div>
-    <ins-toolbar
-        logoHeight="35px"
-        userName="李四"
-    />
+    <ins-toolbar title="My App">
+      <span slot="right" v-if="isLogin">欢迎，{{username}}！ <a href="" @click.prevent="handleLogout">退出</a></span>
+    </ins-toolbar>
+    <div v-if="!isLogin">
+      <ins-login @loginSuccess="handleLoginSuccess" @toRegisterPage="openRegister"></ins-login>
+      <ins-register v-show="showRegister" @registerSuccess="handleRegisterSuccess" @toLoginPage="showLogin"></ins-register>
+    </div>
+    <div v-else>
+      <ins-list :data="dataList" @view="showItem"></ins-list>
+      <ins-item v-if="showItemDetail" :item="selectedItem" @backToList="showList"></ins-item>
+    </div>
   </div>
-
-  <ins-register v-if="currentPage=== 'register'" @registerSuccess="changePage"></ins-register>
-  <ins-login v-if="currentPage=== 'login'" @loginSuccess="changePage"></ins-login>
-  <div v-if="currentPage === 'detail'">详情页</div>
-  <ins-list v-if="currentPage === 'list'" @view="changePage"></ins-list>
-  <ins-item v-if="currentPage === 'item'"></ins-item>
 </template>
 
-<script setup>
-import { ref, computed, version as vueVersion } from 'vue'
-import { version, Message } from 'view-ui-plus'
-import insList from './components/list.vue'
-import insRegister from './components/register.vue'
-import insLogin from './components/login.vue'
-import insToolbar from './components/toolbar.vue'
-import insItem from './components/item.vue'
-// let currentPage = ref(localStorage.getItem('currentUser') ? 'list' : 'register');
-let currentPage = ref('login');
+<script>
+import insLogin from './components/login.vue';
+import insList from './components/list.vue';
+import insItem from './components/item.vue';
+import insToolbar from './components/toolbar.vue';
+import insRegister from './components/register.vue';
 
-function changePage(pageName){
-  console.log("changePage:",pageName)
-  currentPage.value = pageName;
-}
-
-const currentUser = computed(() => JSON.parse(localStorage.getItem('currentUser')));
-
+export default {
+  name: 'MyApp',
+  components: {
+    insLogin,
+    insList,
+    insItem,
+    insToolbar,
+    insRegister,
+  },
+  data() {
+    return {
+      isLogin: false,
+      dataList: [], // 假设数据项只有一个字段 content
+      showRegister: false,
+      showItemDetail: false,
+      selectedItem: {},
+      username: '',
+    };
+  },
+  methods: {
+    handleLoginSuccess(username) {
+      this.isLogin = true;
+      this.username = username;
+      this.dataList = [{ content: '项目1' }, { content: '项目2' }, { content: '项目3' }];
+    },
+    handleRegisterSuccess() {
+      this.showRegister = false;
+    },
+    openRegister() {
+      this.showRegister = true;
+    },
+    showLogin() {
+      this.showRegister = false;
+    },
+    handleLogout() {
+      this.isLogin = false;
+      this.username = '';
+    },
+    showItem(item) {
+      this.selectedItem = item;
+      this.showItemDetail = true;
+    },
+    showList() {
+      this.showItemDetail = false;
+    },
+  },
+};
 </script>
-
-<style></style> 
+ 

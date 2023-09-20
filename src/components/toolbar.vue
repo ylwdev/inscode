@@ -19,6 +19,7 @@ import { Icon, Button, Avatar } from 'view-ui-plus'
 
 export default {
     name: 'ins-toolbar',
+    emits: ['toPage'],
     props: {
         logoUrl: {
             type: String,
@@ -31,9 +32,9 @@ export default {
         menuList: {
             type: Array,
             default: () => [
-                { id: 1, name: "菜单 1", color: "#1E90FF" },
-                { id: 2, name: "菜单 2", color: "#1E90FF" },
-                { id: 3, name: "菜单 3", color: "#1E90FF" }
+                { id: 1, name: "注册", color: "#1E90FF" },
+                { id: 2, name: "登录", color: "#1E90FF" },
+                { id: 3, name: "列表", color: "#1E90FF" }
             ]
         },
         avatarUrl: {

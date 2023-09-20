@@ -14,7 +14,7 @@ import { Message } from 'view-ui-plus'
 
 export default {
   name: 'ins-login',
-  emits: ['loginSuccess'],
+  emits: ['loginSuccess','toRegisterPage'],
   data () {
     return {
       userName: '',
@@ -28,12 +28,20 @@ export default {
         Message.error('用户名或密码错误')
         return
       }
+      localStorage.setItem('loginStatus',true);
       this.$emit('loginSuccess','list')
     },
     toRegister() {
-      this.$emit('loginSuccess','register')
+      this.$emit('toRegisterPage','register')
+    },
+    loginCheck(){
+      if(localStorage.getItem('loginStatus')){
+        this.$emit('loginSuccess','list')
+      };
     }
-
+  },
+  mounted(){
+    this.loginCheck()
   }
 }
 </script>

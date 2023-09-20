@@ -43,7 +43,7 @@
         },
         methods: {
             handleView (item) {
-                this.$emit('view', 'item');
+                this.$emit('view', item);
             }
         }
     }

@@ -1,12 +1,14 @@
 <template>
     <div class="container">
         详情页组件
-        <h1> {{ title }} </h1>
+        <h1> {{ item.title }} </h1>
         <div class="info">
-            <p class="time">创建时间：{{ create_time }}</p>
-            <p class="owner">作者：{{ owner }}</p>
+            <p class="time">创建时间：2023年09月20日17:06:57</p>
+            <p class="owner">作者：inscode</p>
+            <button @click="backToList">Back to List</button>
+
         </div>
-        <p class="content" v-html="content"></p>
+        <p class="content" v-html="item.description"></p>
     </div>
 </template>
 <script>
@@ -18,27 +20,24 @@ InsCode 的 Cloud IDE 底层基于 VSCode 开发，使用体验与桌面版 VS C
     export default {
         name: 'ins-item',
         props: {
-            title: {
-                type: String,
-                default: '文章详情页'
-            },
-            create_time: {
-                type: String,
-                default: '2023-09-20 00:00:00'
-            },
-            owner: {
-                type: String,
-                default: 'inscode'
-            },
-            content: {
-                type: String,
-                default: content
-            },
-
+            item:{
+                type: Object,
+                default: {
+                    avatar: 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2897210097.webp',
+                    title: '奥本海默 Oppenheimer',
+                    description: '随着战争阴云笼罩世界上空，各国紧锣密鼓抓紧军事竞赛。为了抢占先机，美国陆军中将莱斯利·格罗夫斯（马特·达蒙 Matt Damon 饰）找到量子力学与核物理学领域的扛鼎人物罗伯特·奥本海默（基里安·墨菲 Cillian Murphy 饰），力荐其担任曼哈顿计划的首席科学家以及洛斯阿拉莫斯国家实验室的总负责人。经过两年争分夺秒的研发，硕大的蘑菇云终于在荒原的上空腾起，也宣告着绞肉机一般的二战即将落下帷幕。',
+                    url: 'https://movie.douban.com/subject/35593344/?from=showing'
+                }
+            }
         },
         data () {
             return {
                 
+            }
+        },
+        methods: {
+            backToList() {
+                this.$emit('backToList')
             }
         }
     }
