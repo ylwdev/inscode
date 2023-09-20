@@ -35,7 +35,13 @@ npm run build
 name 登录框名称
 icon 登录框图标
 
-2.用户详情页组件
+2.列表组件
+组件名：i-list
+作用：一组数据以列表显示，并提供一个查看的功能
+使用方式：import insList from 'inscode'
+事件：点击查看按钮支持回调方法 @view，参数为 url
+
+3.用户详情页组件
 组件名： user-detail
 作用：用户信息展示
 使用方式： import userDetail from 'inscode'
