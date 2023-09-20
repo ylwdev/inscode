@@ -3,7 +3,8 @@
     用户登录组件
     <Input v-model="userName" />
     <Input v-model="password" />
-    <Button class="ivu-mt" type="primary" @click="handleLogin">登录</Button>
+    <Button class="ivu-mt" type="primary" @click="handleLogin">登录</Button>&nbsp;&nbsp;
+    <Button class="ivu-mt" type="primary" @click="toRegister">去注册</Button>
   </div>
 </template>
 
@@ -28,7 +29,11 @@ export default {
         return
       }
       this.$emit('loginSuccess','list')
+    },
+    toRegister() {
+      this.$emit('loginSuccess','register')
     }
+
   }
 }
 </script>

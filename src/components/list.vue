@@ -5,13 +5,12 @@
                 :avatar="item.avatar"
                 :title="item.title"
                 :description="item.description"
-            >
-                <template #action>
-                    <li>
-                        <Button size="small" type="primary" @click="handleView(item)">查看</Button>
-                    </li>
-                </template>
-            </ListItemMeta>
+            />
+            <template #action>
+                <li>
+                    <Button size="small" type="primary" @click="handleView(item)">查看</Button>
+                </li>
+            </template>
         </ListItem>
     </List>
 </template>
@@ -44,7 +43,7 @@
         },
         methods: {
             handleView (item) {
-                this.$emit('view', item.url);
+                this.$emit('view', 'item');
             }
         }
     }
