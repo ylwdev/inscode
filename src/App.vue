@@ -5,7 +5,7 @@
     </Alert>
   </div>
   <div>
-    <toolbar
+    <ins-toolbar
         logoHeight="35px"
         userName="李四"
     />
@@ -24,7 +24,7 @@ import { version, Message } from 'view-ui-plus'
 import insList from './components/list.vue'
 import insRegister from './components/register.vue'
 import insLogin from './components/login.vue'
-import toolbar from './components/toolbar.vue'
+import insToolbar from './components/toolbar.vue'
 import insItem from './components/item.vue'
 // let currentPage = ref(localStorage.getItem('currentUser') ? 'list' : 'register');
 let currentPage = ref('login');

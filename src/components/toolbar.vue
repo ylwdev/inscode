@@ -18,7 +18,7 @@
 import { Icon, Button, Avatar } from 'view-ui-plus'
 
 export default {
-    name: 'i-toolbar',
+    name: 'ins-toolbar',
     props: {
         logoUrl: {
             type: String,
