@@ -14,7 +14,7 @@
   </div>
 
   <div v-if="currentPage === 'login'">
-    用户注册页
+    用户登录
     <Input v-model="userName" />
     <Input v-model="password" />
     <Button class="ivu-mt" type="primary" @click="login">登录</Button>
@@ -28,13 +28,13 @@ import { ref, version as vueVersion } from 'vue' // 从 Vue 中导入 ref 和 vu
 import { version, Message } from 'view-ui-plus' // 从 view-ui-plus 中导入 version 和 Message
 
 
-let currentPage = "register";
+let currentPage = ref('register');
 
 function register(){
-  currentPage="login";
+  currentPage.value="login";
 }
 function login(){
-  currentPage="list";
+  currentPage.value="list";
 }
 
 </script>
