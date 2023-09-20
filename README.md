@@ -1,29 +1,3 @@
-## 推荐的IDE设置
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## 自定义配置
-
-请参阅 [[Vite配置参考](https://vitejs.dev/config/).
-
-## 项目设置
-
-```sh
-npm install
-```
-
-### 在开发环境中启动和热更新
-
-```sh
-npm run dev
-```
-
-### 编译用于生产环境
-
-```sh
-npm run build
-```
-
 我正在使用Vue开发项目，
 目前系统已经内置以下组件:
 1.登录组件
@@ -50,7 +24,7 @@ item: Object对象，接收ins-list组件@view事件返回的item参数
 
 4.Toolbar组件
 组件名：ins-toolbar
-作用：给页面头部添加toolbar导航
+作用：给页面头部添加toolbar导航，此组件必须放在页面头部
 使用方式： import insToolbar from './components/toolbar.vue'
 
 5.注册组件
@@ -66,3 +40,5 @@ item: Object对象，接收ins-list组件@view事件返回的item参数
 3. 点击列表页后，显示内容详情
 4. 所有功能在一个页面完成
 5. 所有组件，使用以上已经实现的组件，不要自己重新写
+6. 显示组件展示的时候，列表组件不显示
+7. 显示注册组件的时候不要显示登录组件
