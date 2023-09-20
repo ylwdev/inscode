@@ -4,10 +4,10 @@
       当前 Vue 版本为 {{ vueVersion }}，View UI Plus 版本为 {{ version }}
     </Alert>
   </div>
-  <div>公共toolbar</div>
+  <div>公共 toolbar</div>
 
   <div v-if="currentPage === 'register'">
-    用户注册页
+    用户注册
     <Input v-model="userName" />
     <Input v-model="password" />
     <Button class="ivu-mt" type="primary" @click="register">注册</Button>
@@ -23,20 +23,38 @@
   <div v-if="currentPage === 'list'">列表页</div>
   <div v-if="currentPage === 'detail'">详情页</div>
 </template>
+
 <script setup>
-import { ref, version as vueVersion } from 'vue' // 从 Vue 中导入 ref 和 vueVersion
-import { version, Message } from 'view-ui-plus' // 从 view-ui-plus 中导入 version 和 Message
+import { ref, computed, version as vueVersion } from 'vue'
+import { version, Message } from 'view-ui-plus'
 
+let currentPage = ref(localStorage.getItem('currentUser') ? 'list' : 'register');
+let userName = ref('');
+let password = ref('');
 
-let currentPage = ref('register');
-
-function register(){
-  currentPage.value="login";
+function register() {
+  if (!userName.value || !password.value) {
+    Message.error('用户名和密码不能为空');
+    return;
+  }
+  localStorage.setItem('currentUser', JSON.stringify({
+    userName: userName.value,
+    password: password.value
+  }));
+  currentPage.value = 'login';
 }
-function login(){
-  currentPage.value="list";
+
+function login() {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if (!currentUser || currentUser.userName !== userName.value || currentUser.password !== password.value) {
+    Message.error('用户名或密码错误');
+    return;
+  }
+  currentPage.value = 'list';
 }
+
+const currentUser = computed(() => JSON.parse(localStorage.getItem('currentUser')));
 
 </script>
 
-<style></style>
+<style></style> 
