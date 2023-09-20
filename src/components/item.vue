@@ -6,7 +6,10 @@
             <p class="time">创建时间：{{ create_time }}</p>
             <p class="owner">作者：{{ owner }}</p>
         </div>
-        <p class="content" v-html="content"></p>
+        <p class="content">
+        {{ description }} 
+        {{ content }}
+        </p>
     </div>
 </template>
 <script>
@@ -29,6 +32,10 @@ InsCode 的 Cloud IDE 底层基于 VSCode 开发，使用体验与桌面版 VS C
             owner: {
                 type: String,
                 default: 'inscode'
+            },
+            description: {
+                type: String,
+                default: ''
             },
             content: {
                 type: String,
