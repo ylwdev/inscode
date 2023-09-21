@@ -3,7 +3,7 @@
     <ins-toolbar></ins-toolbar>
     <div v-if="!isLoggedIn">
       <ins-login @loginSuccess="loginSuccess" @toRegisterPage="showRegister"></ins-login>
-      <ins-register v-if="isRegisterShown" @registerSuccess="registerSuccess"></ins-register>
+      <!-- <ins-register v-if="isRegisterShown" @registerSuccess="registerSuccess"></ins-register> -->
     </div>
     <div v-else>
       <ins-list :items="items" @view="viewItem"></ins-list>

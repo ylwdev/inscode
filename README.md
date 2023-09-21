@@ -2,11 +2,11 @@
 目前系统已经内置以下组件:
 1.登录组件
 组件名：ins-login
-作用:登录
+作用:登录、注册功能
 使用方式: import insLogin from './components/login.vue'
-事件1：登陆成功支持回调方法 @loginSuccess 
-事件2：跳转到注册页面 @toRegisterPage
-
+接收参数：
+defaultPage：String类型，参数值login或register，默认值是login，该参数表示切换该组件是登录或注册
+事件：登陆成功支持回调方法 @loginSuccess 
 
 2.列表组件
 组件名：ins-list
@@ -27,12 +27,6 @@ item: Object对象，接收ins-list组件@view事件返回的item参数
 作用：给页面头部添加toolbar导航，此组件必须放在页面头部
 使用方式： import insToolbar from './components/toolbar.vue'
 
-5.注册组件
-组件名：ins-register
-作用:注册
-使用方式: import insRegister from './components/register.vue'
-事件：注册成功支持回调方法 @registerSuccess 
-接收参数： 
 
 使用以上组件实现下述需求，要求返回完整代码，不需要解释直接返回完整代码，Markdown格式，需求是：
 1. 用户未登录时，展示登录组件，用户可以登录或注册
