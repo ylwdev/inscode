@@ -1,62 +1,55 @@
 <template>
   <div>
     <ins-toolbar></ins-toolbar>
-    <div v-if="!isLoggedIn">
-      <ins-login @loginSuccess="loginSuccess" @toRegisterPage="showRegister"></ins-login>
-      <!-- <ins-register v-if="isRegisterShown" @registerSuccess="registerSuccess"></ins-register> -->
+    
+    <div v-if="!isLogin">
+      <ins-login @loginSuccess="handleLoginSuccess"></ins-login>
     </div>
-    <div v-else>
-      <ins-list :items="items" @view="viewItem"></ins-list>
-      <ins-item v-if="isItemShown" :item="selectedItem" @backToList="backToList"></ins-item>
+    
+    <div v-if="isLogin && !showList">
+      <ins-item @backToList="handleBackToList" :item="selectedItem"></ins-item>
     </div>
+    
+    <div v-if="isLogin && showList">
+      <ins-list @view="handleView"></ins-list>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import insLogin from './components/login.vue'
-import insRegister from './components/register.vue'
 import insList from './components/list.vue'
 import insItem from './components/item.vue'
 import insToolbar from './components/toolbar.vue'
 
 export default {
+  name: 'app',
   components: {
     insLogin,
-    insRegister,
     insList,
-    insItem, 
+    insItem,
     insToolbar
   },
   data() {
     return {
-      isLoggedIn: false,
-      isRegisterShown: false,
-      items: [
-        {title: 'Item 1', content: 'Item 1 content'},
-        {title: 'Item 2', content: 'Item 2 content'},
-        {title: 'Item 3', content: 'Item 3 content'}
-      ],
-      isItemShown: false,
-      selectedItem: null
+      isLogin: false,
+      selectedItem: null,
+      showList: true
     }
   },
   methods: {
-    loginSuccess() {
-      this.isLoggedIn = true
+    handleLoginSuccess() {
+      this.isLogin = true
+      this.showList = true
     },
-    showRegister() {
-      this.isRegisterShown = true
-    },
-    registerSuccess() {
-      this.isRegisterShown = false
-    },
-    viewItem(item) {
-      this.isItemShown = true
+    handleView(item) {
       this.selectedItem = item
+      this.showList = false
     },
-    backToList() {
-      this.isItemShown = false
+    handleBackToList() {
       this.selectedItem = null
+      this.showList = true
     }
   }
 }
