@@ -1,19 +1,9 @@
 <template>
   <div>
     <ins-toolbar></ins-toolbar>
-    
-    <div v-if="!isLogin">
-      <ins-login @loginSuccess="handleLoginSuccess"></ins-login>
-    </div>
-    
-    <div v-if="isLogin && !showList">
-      <ins-item @backToList="handleBackToList" :item="selectedItem"></ins-item>
-    </div>
-    
-    <div v-if="isLogin && showList">
-      <ins-list @view="handleView"></ins-list>
-    </div>
-    
+    <ins-login v-if="!isLogin" @loginSuccess="handleLoginSuccess" :defaultPage="'login'"></ins-login>
+    <ins-list v-if="isLogin && !showItem" @view="handleView"></ins-list>
+    <ins-item v-if="isLogin && showItem" @backToList="handleBackToList"></ins-item>
   </div>
 </template>
 
@@ -34,22 +24,18 @@ export default {
   data() {
     return {
       isLogin: false,
-      selectedItem: null,
-      showList: true
+      showItem: false
     }
   },
   methods: {
     handleLoginSuccess() {
       this.isLogin = true
-      this.showList = true
     },
     handleView(item) {
-      this.selectedItem = item
-      this.showList = false
+      this.showItem = true
     },
     handleBackToList() {
-      this.selectedItem = null
-      this.showList = true
+      this.showItem = false
     }
   }
 }
